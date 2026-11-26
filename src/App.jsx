@@ -37,13 +37,9 @@ function App() {
     processedOrders
     ,distribution
   } = processOrders(orders)
- console.log('App stats:', stats)
-console.log('Original order:', orders[0])
-console.log('Invalid record:', invalidRecords[0])
-console.log('All issues:', issues)
 return (
     <>
-        <Header />
+       <Header loading={loading} error={error} />
 
         <Navigation
             activePage={activePage}

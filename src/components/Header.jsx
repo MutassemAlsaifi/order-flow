@@ -2,7 +2,17 @@ import { Layers } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import './Header.css'
 
-function Header() {
+function Header({loading , error}) {
+     let connectionStatus = 'connected'
+    let connectionText = 'API connected'
+
+    if (loading) {
+        connectionStatus = 'connecting'
+        connectionText = 'Connecting...'
+    } else if (error) {
+        connectionStatus = 'disconnected'
+        connectionText = 'Not connected'
+    }
   return (
     <header className="header">
 
@@ -18,10 +28,13 @@ function Header() {
       </div>
 
       <div className="header-actions">
-        <div className="api-status">
-          <span className="status-dot"></span>
-          <span>Not connected</span>
-        </div>
+        <div className={`connection-status ${connectionStatus}`}>
+
+    <span className="status-dot"></span>
+
+    <span>{connectionText}</span>
+
+</div>
 
         <a
           href="https://github.com/MutassemAlsaifi/order-flow"
