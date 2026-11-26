@@ -9,8 +9,10 @@ import OrderBreakdown from './OrderBreakdown'
 import StatsCard from './StatsCard'
 import './Overview.css'
 
-function Overview() {
+function Overview({ stats ,distribution  }) {
+    
   return (
+    
     <section className="overview">
 
       <div className="overview-heading">
@@ -21,37 +23,40 @@ function Overview() {
       <div className="stats-grid">
 
         <StatsCard
-          title="Total revenue"
-          value="—"
-          description="Revenue from valid paid orders"
-          icon={<Wallet size={18} />}
-        />
+    title="Total revenue"
+    value={stats.revenue.toLocaleString('en-IE', {
+    style: 'currency',
+    currency: 'EUR'
+})}
+    description="Revenue from valid paid orders"
+    icon={<Wallet size={18} />}
+/>
 
         <StatsCard
           title="Total orders"
-          value="—"
+          value={stats.total}
           description="All received records"
           icon={<ShoppingBag size={18} />}
         />
 
         <StatsCard
           title="Paid orders"
-          value="—"
+          value={stats.paid}
           description="Successfully paid orders"
           icon={<CircleCheck size={18} />}
         />
 
         <StatsCard
           title="Invalid records"
-          value="—"
+          value={stats.invalid}
           description="Records requiring attention"
           icon={<TriangleAlert size={18} />}
         />
 
       </div>
 <div className="analytics-grid">
-  <RevenueChart />
-  <OrderBreakdown />
+  <RevenueChart  data={distribution}/>
+  <OrderBreakdown stats={stats} />
 </div>
     </section>
   )

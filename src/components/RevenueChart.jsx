@@ -1,54 +1,71 @@
 import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer
 } from 'recharts'
 
 import './Analytics.css'
 
 function RevenueChart({ data = [] }) {
-  return (
-    <section className="analytics-card">
 
-      <h2>Revenue over time</h2>
-      <p>Revenue generated from valid paid orders</p>
+    return (
+        <article className="analytics-card">
 
-      <div className="chart-container">
-        {data.length === 0 ? (
-          <p className="empty-state">No revenue data available</p>
-        ) : (
-          <ResponsiveContainer width="100%" height={280}>
-            <AreaChart data={data}>
+            <h3>Order Value Distribution</h3>
 
-              <CartesianGrid
-                stroke="#e4e4e7"
-                strokeDasharray="3 4"
-                vertical={false}
-              />
+            <p>
+                Distribution of valid paid orders by amount.
+            </p>
 
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
+            <div style={{ width: '100%', height: 300 }}>
 
-              <Area
-                type="linear"
-                dataKey="revenue"
-                stroke="#18181b"
-                strokeWidth={2}
-                fill="#f1f1f3"
-              />
+                <ResponsiveContainer width="100%" height="100%">
 
-            </AreaChart>
-          </ResponsiveContainer>
-        )}
-      </div>
+                    <BarChart data={data}>
 
-    </section>
-  )
+                        <CartesianGrid
+                            strokeDasharray="3 3"
+                            vertical={false}
+                            stroke="#e4e4e7"
+                        />
+
+                        <XAxis
+                            dataKey="range"
+                            axisLine={false}
+                            tickLine={false}
+                            tick={{ fontSize: 11 }}
+                        />
+
+                        <YAxis
+                            axisLine={false}
+                            tickLine={false}
+                            allowDecimals={false}
+                        />
+
+                        <Tooltip
+                            cursor={{ fill: '#f4f4f5' }}
+                        />
+
+                        <Bar
+                            dataKey="count"
+                            name="Paid orders"
+                            fill="#18181b"
+                            radius={[4, 4, 0, 0]}
+                            maxBarSize={55}
+                        />
+
+                    </BarChart>
+
+                </ResponsiveContainer>
+
+            </div>
+
+        </article>
+    )
 }
 
 export default RevenueChart
