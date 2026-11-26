@@ -34,21 +34,21 @@ function Overview({ stats ,distribution  }) {
 
         <StatsCard
           title="Total orders"
-          value={stats.total}
+          value={stats.total.toLocaleString('en-IE')}
           description="All received records"
           icon={<ShoppingBag size={18} />}
         />
 
         <StatsCard
           title="Paid orders"
-          value={stats.paid}
+          value={stats.paid.toLocaleString('en-IE')}
           description="Successfully paid orders"
           icon={<CircleCheck size={18} />}
         />
 
         <StatsCard
           title="Invalid records"
-          value={stats.invalid}
+          value={stats.invalid.toLocaleString('en-IE')}
           description="Records requiring attention"
           icon={<TriangleAlert size={18} />}
         />

@@ -60,3 +60,14 @@
     height: 9px;
     border-radius: 50%;
 }
+.analytics-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.analytics-card p {
+    font-size: 13px;
+    color: #71717a;
+    margin: 0 0 24px;
+}
