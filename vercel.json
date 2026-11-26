@@ -1,0 +1,7 @@
+{
+    "functions": {
+        "api/orders.js": {
+            "includeFiles": "db.json"
+        }
+    }
+}
