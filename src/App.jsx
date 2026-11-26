@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Navigation from './components/Navigation'
 import Overview from './components/Overview'
 import Orders from './components/Orders'
+import DataQuality from './components/DataQuality'
 function App() {
     const [activePage, setActivePage] = useState('overview')
 
@@ -14,6 +15,7 @@ function App() {
         setActivePage={setActivePage} />
         {activePage === 'overview' && <Overview />}
         {activePage === 'orders' && <Orders />}
+        {activePage === 'quality' && <DataQuality />}
     </div>
     
   )
