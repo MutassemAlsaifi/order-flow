@@ -1,0 +1,62 @@
+.analytics-card {
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.analytics-card h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.analytics-card p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #71717a;
+}
+
+.chart-container {
+    margin-top: 24px;
+    min-height: 280px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 110px 0;
+}
+
+.breakdown-bar {
+    display: flex;
+    height: 12px;
+    background: #f4f4f5;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 28px 0;
+}
+
+.breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.breakdown-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.breakdown-row strong {
+    margin-left: auto;
+    font-weight: 600;
+}
+
+.category-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}

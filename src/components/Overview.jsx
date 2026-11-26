@@ -4,7 +4,8 @@ import {
   CircleCheck,
   TriangleAlert
 } from 'lucide-react'
-
+import RevenueChart from './RevenueChart'
+import OrderBreakdown from './OrderBreakdown'
 import StatsCard from './StatsCard'
 import './Overview.css'
 
@@ -48,7 +49,10 @@ function Overview() {
         />
 
       </div>
-
+<div className="analytics-grid">
+  <RevenueChart />
+  <OrderBreakdown />
+</div>
     </section>
   )
 }
