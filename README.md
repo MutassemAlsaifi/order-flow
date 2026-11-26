@@ -160,27 +160,104 @@ http://localhost:3000/orders
 
 ## Testing
 
-The business logic is tested using Vitest.
+The business logic is tested using Vitest to ensure that
+order processing, data validation, and analytics work
+correctly under different scenarios.
 
-Run all tests:
+The tests are independent of the React interface and
+do not require a running API.
+
+### Testing Approach
+
+The tests follow the Arrange, Act, Assert (AAA) pattern:
+
+- **Arrange:** Prepare the input data.
+- **Act:** Execute the function being tested.
+- **Assert:** Compare the actual result with the expected result.
+
+### Vitest Functions
+
+The following functions and matchers are used:
+
+| Function | Purpose |
+|----------|---------|
+| `describe()` | Groups related test cases. |
+| `it()` | Defines an individual test case. |
+| `expect()` | Creates an assertion for the actual result. |
+| `toBe()` | Checks exact equality. |
+| `toEqual()` | Compares the contents of objects and arrays. |
+| `toContain()` | Checks whether an array contains a specific value. |
+| `toContainEqual()` | Checks whether an array contains an equivalent object. |
+| `toHaveLength()` | Verifies the number of elements. |
+| `toBeCloseTo()` | Compares decimal numbers with a tolerance. |
+
+### Test Example
+
+```js
+it('calculates paid orders correctly', () => {
+
+    // Arrange
+    const orders = [
+        { amount: 100, status: 'paid' },
+        { amount: 50, status: 'paid' },
+        { amount: 200, status: 'pending' }
+    ]
+
+    // Act
+    const result = handelOrder(orders)
+
+    // Assert
+    expect(result).toEqual({
+        sum: 150,
+        count: 2
+    })
+})
+```
+
+This test verifies that only valid paid orders are
+included in the total revenue and order count.
+
+For decimal calculations, `toBeCloseTo()` is used
+instead of exact equality because JavaScript
+floating-point arithmetic may introduce small
+rounding differences.
+
+### Test Coverage
+
+| Test File | Tested Functionality | Results |
+|-----------|----------------------|---------|
+| `orderFunction.test.js` | Revenue, paid order count, invalid amounts, null records, and decimals | 5/5 |
+| `dataValidation.test.js` | Valid records, invalid amounts, unknown statuses, and multiple errors | 5/5 |
+| `orderProcessing.test.js` | Dashboard statistics, invalid records, issue counts, and amount distribution | 5/5 |
+| **Total** | **Business logic** | **15/15 passed** |
+
+These tests cover selected business logic scenarios.
+UI testing and live API testing are not included.
+
+### Running the Tests
+
+Run all tests once:
 
 ```bash
 npm run test:run
 ```
 
-Test results:
+Run tests in watch mode during development:
 
-| Test File | Passed |
-|-----------|--------|
-| orderFunction.test.js | 5/5 |
-| dataValidation.test.js | 5/5 |
-| orderProcessing.test.js | 5/5 |
-| Total | 15/15 |
+```bash
+npm run test
+```
 
-The tests cover revenue calculation, decimal amounts,
-invalid records, empty datasets, validation rules,
-and dashboard statistics.
+### Test Results
 
+```text
+✓ dataValidation.test.js   (5 tests)
+✓ orderFunction.test.js    (5 tests)
+✓ orderProcessing.test.js  (5 tests)
+
+Test Files  3 passed (3)
+Tests       15 passed (15)
+```
 ## Code Quality
 
 Run ESLint:
