@@ -10,8 +10,6 @@ function OrdersTable({ orders = [] }) {
             <th>Customer</th>
             <th>Amount</th>
             <th>Status</th>
-            <th>Date</th>
-            <th>Country</th>
           </tr>
         </thead>
 
@@ -36,9 +34,6 @@ function OrdersTable({ orders = [] }) {
                 </span>
               </td>
 
-              <td>{order.date || '—'}</td>
-
-              <td>{order.country || '—'}</td>
 
             </tr>
           ))}

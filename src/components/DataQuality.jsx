@@ -1,7 +1,9 @@
+import { useState } from 'react'
+
 import {
-  ShieldCheck,
-  CircleCheck,
-  TriangleAlert
+    ShieldCheck,
+    CircleCheck,
+    TriangleAlert
 } from 'lucide-react'
 
 import StatsCard from './StatsCard'
@@ -10,13 +12,28 @@ import IssuesBreakdown from './IssuesBreakdown'
 import InvalidOrdersTable from './InvalidOrdersTable'
 
 import './DataQuality.css'
-
 function DataQuality({
+    
   stats = null,
   issues = [],
   invalidRecords = []
 }) {
+const [currentPage, setCurrentPage] = useState(1)
 
+const recordsPerPage = 20
+
+const totalPages = Math.ceil(
+    invalidRecords.length / recordsPerPage
+)
+
+const lastIndex = currentPage * recordsPerPage
+
+const firstIndex = lastIndex - recordsPerPage
+
+const currentRecords = invalidRecords.slice(
+    firstIndex,
+    lastIndex
+)
   const total = stats?.total ?? 0
   const valid = stats?.valid ?? 0
 
@@ -65,8 +82,38 @@ function DataQuality({
 
       </div>
 
-      <InvalidOrdersTable records={invalidRecords} />
+<InvalidOrdersTable records={currentRecords} />
+<div className="pagination">
 
+    <span>
+        Showing {invalidRecords.length ? firstIndex + 1 : 0}
+        –{Math.min(lastIndex, invalidRecords.length)}
+        {' of '}{invalidRecords.length} invalid records
+    </span>
+
+    <div className="pagination-controls">
+
+        <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+        >
+            Previous
+        </button>
+
+        <span>
+            Page {totalPages ? currentPage : 0} of {totalPages}
+        </span>
+
+        <button
+            disabled={currentPage >= totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+        >
+            Next
+        </button>
+
+    </div>
+
+</div>
     </section>
   )
 }
