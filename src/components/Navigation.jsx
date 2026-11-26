@@ -1,6 +1,5 @@
 import { LayoutDashboard, List, ShieldCheck } from 'lucide-react'
 import './Navigation.css'
-import Overview from './Overview'
 
 function Navigation({ activePage, setActivePage }) {
   return (
